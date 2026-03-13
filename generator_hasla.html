@@ -77,16 +77,28 @@ font-weight:bold;
 
 function generatePassword(){
 
-let length=document.getElementById("length").value;
+let length = document.getElementById("length").value;
 
-let characters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+let lower = "abcdefghijklmnopqrstuvwxyz";
+let upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let numbers = "0123456789";
+let symbols = "!@#$%^&*()_+";
 
-let password="";
+let all = lower + upper + numbers + symbols;
 
-for(let i=0;i<length;i++){
+let password = "";
 
-password+=characters.charAt(Math.floor(Math.random()*characters.length));
+/* dodajemy po jednym z każdego typu */
 
+password += lower[Math.floor(Math.random()*lower.length)];
+password += upper[Math.floor(Math.random()*upper.length)];
+password += numbers[Math.floor(Math.random()*numbers.length)];
+password += symbols[Math.floor(Math.random()*symbols.length)];
+
+/* reszta znaków losowa */
+
+for(let i=4;i<length;i++){
+password += all[Math.floor(Math.random()*all.length)];
 }
 
 document.getElementById("password").innerText="Twoje hasło: "+password;
@@ -98,3 +110,4 @@ document.getElementById("password").innerText="Twoje hasło: "+password;
 </body>
 
 </html>
+
